@@ -5,6 +5,7 @@
  */
 package Frame;
 
+import GUI.AddQuestion;
 import java.util.ArrayList;
 
 /**
@@ -39,5 +40,14 @@ public class Demo
     
     DataBase db = DataBase.getInstance();
     db.load();
+    
+    AddQuestion addQuestionFrame = new AddQuestion(4);
+    
+    while (addQuestionFrame.getQuestion() == null)
+    {
+      //wait until form is filled  
+    }
+    Question newQuestion = addQuestionFrame.getQuestion();
+    addQuestionFrame.dispose();
   }
 }

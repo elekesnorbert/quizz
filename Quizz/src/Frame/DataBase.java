@@ -18,13 +18,13 @@ import java.util.logging.Logger;
  *
  * @author Elekes Norbert
  */
-public class DataBase 
+public class DataBase
 {
 
   private static DataBase instance;
-  
+
   private static final Logger logger = Logger.getLogger(DataBase.class.getName());
-  private ArrayList<Quiz> quizes; 
+  private ArrayList<Quiz> quizes;
   private static final String FILENAME = "quizes.dat";
 
   private DataBase()
@@ -40,8 +40,8 @@ public class DataBase
     }
     return instance;
   }
-  
-  public void save() //TODO: clean string before saving (eliminate {})
+
+  public void save() //TODO: clean string before saving (eliminate ; from strings)
   {
     try
     {
@@ -52,9 +52,9 @@ public class DataBase
       {
         quiz.save(fw);
       }
-      
+
       fw.write("\r\n");
-      
+
       fw.flush();
       fw.close();
     }
@@ -70,18 +70,18 @@ public class DataBase
     {
       Scanner sc = new Scanner(new File(FILENAME));
       sc.useDelimiter(";");
-      
+
       ArrayList<Quiz> tempArray = new ArrayList<>();// for safty reasons - if exception is occured, not the entire file will be loaded, thus the data will be corrupted, which in combination with a save can lead to data loss
       Quiz tempQuiz = new Quiz();
       int numberOfQuizes = sc.nextInt();
-      for(int i = 0; i < numberOfQuizes; i++)
+      for (int i = 0; i < numberOfQuizes; i++)
       {
         tempQuiz.load(sc);
         tempArray.add(tempQuiz);
       }
-      
+
       quizes = tempArray;
-      
+
       sc.close();
     }
     catch (FileNotFoundException ex)
