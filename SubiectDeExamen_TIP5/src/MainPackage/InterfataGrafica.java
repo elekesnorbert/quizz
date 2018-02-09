@@ -62,7 +62,8 @@ public class InterfataGrafica extends JFrame implements ActionListener
       //fd.setDirectory("C://");
       fd.setVisible(true);
 
-      filePath = fd.getFile();     
+      filePath = fd.getDirectory() + fd.getFile();     
+      
       if (filePath != null)
       {
         FileThread ft = new FileThread("Loading Thread", filePath, FileDialog.LOAD, textArea);
@@ -73,7 +74,7 @@ public class InterfataGrafica extends JFrame implements ActionListener
       FileDialog fd = new FileDialog(this, "Saving File...", FileDialog.SAVE);
       fd.setVisible(true);
 
-      filePath = fd.getFile();
+      filePath = fd.getDirectory() + fd.getFile();
       if (filePath != null)
       {
         FileThread ft = new FileThread("Saving Thread", filePath, FileDialog.SAVE, textArea);
